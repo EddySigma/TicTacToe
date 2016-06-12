@@ -183,6 +183,18 @@ public class GameFragment extends Fragment {
             }
         }
         setAvailableFromLastMove(mLastSmall);
-        updateallTiles();
+        updateAllTiles();
     }
+
+    private void updateAllTiles() {
+        mEntireBoard.updateDrawableState();
+        for(int large = 0; large <9; large++) {
+            mLargeTiles[large].updateDrawableState();
+            for(int small = 0; small < 9; small++) {
+                mSmallTiles[large][small].updateDrawableState();
+            }
+        }
+    }
+
+
 }
