@@ -95,5 +95,59 @@ public class Tile {
 
         // check for a draw
         int total = 0;
+        for(int row = 0; row < 3; row++) {
+            for(int col = 0; col < 3; col++) {
+                Owner owner = mSubTiles[3 * row + col].getOwner();
+                if (Owner != Owner.NEITHER) total++;
+            }
+            if (total == 9) return Owner.BOTH;
+        }
+        // neither player has won this tile
+        return Owner.NEITHER;
+    }
+
+    private void countCaptures(int totalX[], int totalO[]) {
+        int capturedX, capturedO;
+        // chech horizontal
+        for(int row = 0; row <3; row++) {
+            capturedX = capturedO = 0;
+            for(int col = 0; col < 3; col++) {
+                Owner owner = mSubtiles[3 * row + col].getOwner();
+                if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
+                if(owner == Owner.O || owner == Owner.BOTH) capturedO++;
+            }
+            totalX[capturedX]++;
+            totalO[capturedO]++;
+        }
+
+        // check vertical
+        for(int col = 0; col < 3; col++) {
+            capturedX = capturedO = 0;
+            for(int row = 0; row < 3; row++) {
+                Owner owner = mSubtiles[3 * row + col].getOwner();
+                if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
+                if(owner == Owner.O || owner == Owner.BOTH) capturedO++;
+            }
+            totalX[capturedX]++;
+            totalO[caoturedO]++;
+        }
+
+        // check diagnals
+        capturedX = capturedO = 0;
+        for(int diag = 0; diag < 3; diag++) {
+            Owner owner = mSubtiles[3 * diag + diag].getOwner();
+            if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
+            if(owner == Owner.O || owner == Owner.BOTH) capteredO++;
+        }
+        totalX[capturedX]++;
+        totalO[capturedO]++;
+        capturedX = capturedO = 0;
+        for(int diag = 0; diag < 3; diag++) {
+            Owner owner = mSubTiles[3 * diag + (2 - diag)].getOwner();
+            if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
+            if(owner == Owner.O || owner == Owner.BOTH) capturedO++;
+        }
+        totalX[capturedX]++;
+        totalO[capturedO]++;
     }
 }
