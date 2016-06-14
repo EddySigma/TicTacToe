@@ -9,7 +9,7 @@ import android.widget.ImageButton;
  */
 public class Tile {
     public enum Owner{
-        X, O, NEITHER, BOTH;
+        X, O, NEITHER, BOTH
     }
 
     public static final int LEVEL_X = 0;
@@ -23,7 +23,7 @@ public class Tile {
     private View mView;
     private Tile mSubTiles[];
 
-    public Tile (GameFragment) {
+    public Tile (GameFragment game) {
         this.mGame = game;
     }
 
@@ -39,7 +39,7 @@ public class Tile {
         return mOwner;
     }
 
-    public setOwner(Owner owner) {
+    public void setOwner(Owner owner) {
         this.mOwner = owner;
     }
 
@@ -98,7 +98,7 @@ public class Tile {
         for(int row = 0; row < 3; row++) {
             for(int col = 0; col < 3; col++) {
                 Owner owner = mSubTiles[3 * row + col].getOwner();
-                if (Owner != Owner.NEITHER) total++;
+                if (owner != Owner.NEITHER) total++;
             }
             if (total == 9) return Owner.BOTH;
         }
@@ -108,11 +108,11 @@ public class Tile {
 
     private void countCaptures(int totalX[], int totalO[]) {
         int capturedX, capturedO;
-        // chech horizontal
+        // check horizontal
         for(int row = 0; row <3; row++) {
             capturedX = capturedO = 0;
             for(int col = 0; col < 3; col++) {
-                Owner owner = mSubtiles[3 * row + col].getOwner();
+                Owner owner = mSubTiles[3 * row + col].getOwner();
                 if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
                 if(owner == Owner.O || owner == Owner.BOTH) capturedO++;
             }
@@ -124,20 +124,20 @@ public class Tile {
         for(int col = 0; col < 3; col++) {
             capturedX = capturedO = 0;
             for(int row = 0; row < 3; row++) {
-                Owner owner = mSubtiles[3 * row + col].getOwner();
+                Owner owner = mSubTiles[3 * row + col].getOwner();
                 if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
                 if(owner == Owner.O || owner == Owner.BOTH) capturedO++;
             }
             totalX[capturedX]++;
-            totalO[caoturedO]++;
+            totalO[capturedO]++;
         }
 
-        // check diagnals
+        // check diagonals
         capturedX = capturedO = 0;
         for(int diag = 0; diag < 3; diag++) {
-            Owner owner = mSubtiles[3 * diag + diag].getOwner();
+            Owner owner = mSubTiles[3 * diag + diag].getOwner();
             if(owner == Owner.X || owner == Owner.BOTH) capturedX++;
-            if(owner == Owner.O || owner == Owner.BOTH) capteredO++;
+            if(owner == Owner.O || owner == Owner.BOTH) capturedO++;
         }
         totalX[capturedX]++;
         totalO[capturedO]++;
