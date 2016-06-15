@@ -8,29 +8,30 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/background"
         android:scaleType="centerCrop"
-        android:src="@drawable/sandy_beach"/>
+        android:src="@drawable/sandy_beach" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:baselineAligned="false"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <fragment
+            android:id="@+id/fragment_game"
+            class="com.garcia.e.juan.tictactoe.GameFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_game"
-            class="com.garcia.e.juan.tictactoe.GameFragment"
-            android:id="@+id/fragment_game" />
+            tools:layout="@layout/fragment_game" />
 
         <fragment
+            android:id="@+id/fragment_game_controls"
+            class="com.garcia.e.juan.tictactoe.ControlFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_control"
-            android:id="@+id/fragment_game_controls"
-            class="com.garcia.e.juan.tictactoe.ControlFragment" />
+            tools:layout="@layout/fragment_control" />
 
     </LinearLayout>
 

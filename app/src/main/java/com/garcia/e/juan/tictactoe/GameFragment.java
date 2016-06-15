@@ -1,7 +1,7 @@
 package com.garcia.e.juan.tictactoe;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +33,8 @@ public class GameFragment extends Fragment {
             R.id.small6,R.id.small7,R.id.small8,R.id.small9,};
 
     private Tile mEntireBoard = new Tile(this);
-    private Tile mLargeTiles = new Tile[9];
-    private Tile mSmallTiles = new Tile[9][9];
+    private Tile[] mLargeTiles = new Tile[9];
+    private Tile[][] mSmallTiles = new Tile[9][9];
     private Tile.Owner mPlayer = Tile.Owner.X;
     private Set<Tile> mAvailable = new HashSet<Tile>();
     private int mLastLarge;
@@ -102,7 +102,7 @@ public class GameFragment extends Fragment {
         mEntireBoard.setOwner(winner);
         updateAllTiles();
         if (winner != Tile.Owner.NEITHER) {
-            ((GameActivity)getActivity()).reportWinner(winner);
+            ((GameActivity) getActivity()).reportWinner(winner);
         }
     }
 
@@ -138,12 +138,12 @@ public class GameFragment extends Fragment {
                     addAvailable(tile);
             }
         }
+        // if there were none available, make all squares available
+        if(mAvailable.isEmpty()) {
+            setAllAvailable();
+        }
     }
 
-    // if there were none available, make all squares available
-    if(mAvailable.isEmpty()) {
-        setAllAvailable();
-    }
 
     private void setAllAvailable() {
         for(int large = 0; large < 9; large++) {
@@ -171,7 +171,7 @@ public class GameFragment extends Fragment {
     }
 
     public void putState(String gameData) {
-        String[] fields = gameData.split(',');
+        String[] fields = gameData.split(",");
         int index = 0;
         mLastLarge = Integer.parseInt(fields[index++]);
         mLastSmall = Integer.parseInt(fields[index++]);

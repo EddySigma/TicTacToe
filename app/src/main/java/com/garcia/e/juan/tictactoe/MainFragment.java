@@ -30,7 +30,8 @@ public class MainFragment extends Fragment {
                 builder.setPositiveButton(R.string.ok_label, new DialogInterface.OnClickListener() {    // only use ok button to accept
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {                        // onclick for alert screen
-                        // stuff will go in here
+                        // this is empty because the ok button is only meant for the user to accept
+                        // the pop up window and continue working...
                     }
                 });
                 mDialog = builder.show();       // display the alert screen

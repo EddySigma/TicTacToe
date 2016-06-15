@@ -18,4 +18,8 @@
     <string name="main_menu_label">Main Menu</string>
     <string name="declare_winner">%1$s is the winner</string>
 
+    <string name="space">Space</string>
+    <string name="background">Background Image</string>
+    <string name="bgImage">Background Image</string>
+
 </resources>

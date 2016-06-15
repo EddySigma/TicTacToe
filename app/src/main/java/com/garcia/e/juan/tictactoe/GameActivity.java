@@ -1,9 +1,9 @@
 package com.garcia.e.juan.tictactoe;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 
 /**
  * Created by Juan on 5/31/2016.

@@ -4,9 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageButton;
 
-/**
- * Created by Juan on 6/6/2016.
- */
+
 public class Tile {
     public enum Owner{
         X, O, NEITHER, BOTH

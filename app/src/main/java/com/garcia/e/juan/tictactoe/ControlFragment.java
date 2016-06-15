@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  */
 public class ControlFragment extends Fragment {
     @Override
-    public View onCreate (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_control, container, false);
         View main = rootView.findViewById(R.id.button_main);
         View restart = rootView.findViewById(R.id.button_restart);
