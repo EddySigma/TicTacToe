@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 public class MainFragment extends Fragment {
     private AlertDialog mDialog;
 
-    // ======================================================== //
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+        // button handling
         View aboutButton = rootView.findViewById(R.id.about_button);    // this is the about button
         aboutButton.setOnClickListener(new View.OnClickListener(){      // onclick listener for the about button
             @Override
