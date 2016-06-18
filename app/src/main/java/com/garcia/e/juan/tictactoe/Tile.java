@@ -1,6 +1,7 @@
 package com.garcia.e.juan.tictactoe;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -81,6 +82,7 @@ public class Tile {
     }
 
     public Owner findWinner() {
+        Log.d("fW", "finding winner");
         // if owner has been calculated return it's value
         if(getOwner() != Owner.NEITHER)
             return getOwner();

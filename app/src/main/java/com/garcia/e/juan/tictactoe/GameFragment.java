@@ -2,6 +2,7 @@ package com.garcia.e.juan.tictactoe;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,7 @@ public class GameFragment extends Fragment {
     }
 
     public void initGame() {
+        Log.d("UT3", "init game");
         mEntireBoard = new Tile(this);
         for (int large = 0; large < 9; large++) {
             mLargeTiles[large] = new Tile(this);

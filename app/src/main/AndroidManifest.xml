@@ -16,7 +16,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.garcia.e.juan.tictactoe.GameActivity"></activity>
+        <activity
+            android:name="com.garcia.e.juan.tictactoe.GameActivity">
+        </activity>
     </application>
 
 </manifest>

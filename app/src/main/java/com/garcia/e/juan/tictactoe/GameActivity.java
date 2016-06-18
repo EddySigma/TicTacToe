@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 
 
 public class GameActivity extends Activity {
@@ -28,6 +29,7 @@ public class GameActivity extends Activity {
                 mGameFragment.putState(gameData);
             }
         }
+        Log.d("UT3", "restore= " + restore);
     }
 
     @Override
@@ -35,6 +37,7 @@ public class GameActivity extends Activity {
         super.onPause();
         String gameData = mGameFragment.getState();
         getPreferences(MODE_PRIVATE).edit().putString(PREF_RESTORE, gameData).commit();
+        Log.d("UT3", "state=" + gameData );
     }
 
     public void restartGame() {
