@@ -2,6 +2,7 @@ package com.garcia.e.juan.tictactoe;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import java.util.Set;
 
 
 public class GameFragment extends Fragment {
+
+    private Handler mHandler = new Handler();
 
     static private int mLargeIds[] = {R.id.large1, R.id.large2, R.id.large3, R.id.large4, R.id.large5,
             R.id.large6, R.id.large7, R.id.large8, R.id.large9,};
@@ -73,7 +76,8 @@ public class GameFragment extends Fragment {
                     public void onClick(View view) {
                         if (isAvailable(smallTile)) {
                             makeMove(fLarge, fSmall);
-                            switchTurns();
+                            // switchTurns(); // changed in page 86
+                            think();
                         }
                     }
                 });
@@ -199,5 +203,49 @@ public class GameFragment extends Fragment {
                 mSmallTiles[large][small].updateDrawableState();
             }
         }
+    }
+
+    private void think() {
+        ((GameActivity)getActivity()).startThinking();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(getActivity() == null) return;
+                if(mEntireBoard.getOwner() == Tile.Owner.NEITHER) {
+                    int mode[] = new int[2];
+                    pickMove(move);
+                    if(move[0] != -1 && move[1] != -1) {
+                        switchTurns();
+                        makeMove(move[0], move[1]);
+                        switchTurns();
+                    }
+                }
+                ((GameActivity) getActivity()).stopThinking();
+            }
+        }, 1000);
+    }
+
+    private void pickMove(int move[]) {
+        Tile.Owner opponent = mPlayer == Tile.Owner.X ? Tile.Owner.O : Tile.Owner.X;
+        int bestLarge = -1;
+        int bestSmall = -1;
+        int bestValue = Integer.MAX_VALUE;
+        for(int large = 0; large < 9; large++) {
+            for(int small = 0; small < 9; small++) {
+                Tile smallTile = mSmallTiles[large][small];
+                if (isAvailable(smallTile)) {
+                    Tile newBoard = mEntireBoard.deepCopy();
+                    newBoard.getSubTiles()[large].getSubTiles()[small].setOwner(opponent);
+                    int value = newBoard.evaluate();
+                    if (value < bestValue) {
+                        bestLarge = large;
+                        bestSmall = small;
+                        bestValue = value;
+                    }
+                }
+            }
+        }
+        move[0] = bestLarge;
+        move[1] = bestSmall;
     }
 }
